@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "date": "2026-04-18",
+    "duration_seconds": 899.87,
+    "total_cycles": 17,
+    "video_left": "shovel_left.mp4",
+    "video_right": "shovel_right.mp4",
+    "imu_file": "imu_data.npy"
+  },
+  "dimensions": {
+    "speed": {
+      "score": 100.0,
+      "loads_per_hour": 68.0,
+      "avg_cycle_seconds": 44.91,
+      "std_cycle_seconds": 10.42,
+      "cycle_times": [
+        30.87,
+        38.93,
+        50.2,
+        57.13,
+        32.73,
+        37.73,
+        66.4,
+        40.0,
+        58.73,
+        52.07,
+        34.47,
+        41.2,
+        51.87,
+        35.93,
+        42.8,
+        57.33,
+        35.07
+      ]
+    },
+    "quality": {
+      "score": 0.0,
+      "dark_mineral_pct": 26.78,
+      "spillage_pct": 92.2
+    },
+    "technique": {
+      "score": 82.0,
+      "avg_jerk": 41.17,
+      "max_jerk": 769.96,
+      "smoothness_index": 9.37,
+      "symmetry_index": 0.476
+    },
+    "adaptability": {
+      "score": 97.2,
+      "left_avg_cycle_s": 44.79,
+      "right_avg_cycle_s": 45.04,
+      "position_penalty_pct": 0.55
+    },
+    "fatigue": {
+      "score": 100.0,
+      "smoothness_block1": 9.38,
+      "smoothness_block2": 9.32,
+      "smoothness_blocks": [
+        9.38,
+        9.32,
+        9.4
+      ],
+      "decay_per_block": 0.01,
+      "decay_per_minute": 0.002,
+      "projected_8h_smoothness": 10.34
+    },
+    "safety": {
+      "score": 0.0,
+      "risk_events_count": 10,
+      "load_stability_index": 0.524
+    }
+  },
+  "overall": {
+    "oep_score": 66.0,
+    "profile_type": "DEVELOPING — Operador en desarrollo, entrenamiento recomendado",
+    "percentile_estimate": 25
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "action": "Revisar el punto de descarga y el acceso al material para elevar la proporción de mineral oscuro útil.",
+      "expected_gain_pct": 12
+    },
+    {
+      "priority": "LOW",
+      "action": "Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.",
+      "expected_gain_pct": 1
+    },
+    {
+      "priority": "LOW",
+      "action": "Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.",
+      "expected_gain_pct": 1
+    }
+  ],
+  "economic_impact": {
+    "current_value_per_15min_usd": 2276.3,
+    "improved_value_per_15min_usd": 3438.93,
+    "annual_improvement_usd": 11161248.0
+  }
+}
