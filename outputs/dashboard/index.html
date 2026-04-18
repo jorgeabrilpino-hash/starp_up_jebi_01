@@ -4,70 +4,89 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>OEP Dashboard</title>
+<style>
+:root{--bg:#0a0f16;--card:#111827;--border:#263446;--text:#dbe7f3;--muted:#94a3b8;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--blue:#38bdf8}
+body{margin:0;padding:24px;background:linear-gradient(180deg,#081019,#0b1220);color:var(--text);font-family:Inter,Arial,sans-serif}
+.container{max-width:1320px;margin:0 auto} .card{background:rgba(17,24,39,.95);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start} .muted{color:var(--muted)} .hero{display:grid;grid-template-columns:280px 1fr 340px;gap:18px;margin-top:18px}
+.score{font-size:64px;font-weight:800;color:#f59e0b;line-height:1} .subscore{font-size:13px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px} .kpi{background:#0c1522;border:1px solid var(--border);border-radius:12px;padding:14px} .kpi .name{font-size:12px;color:var(--muted)} .kpi .val{font-size:28px;font-weight:700;margin-top:6px}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .metric-card{background:#0c1522;border:1px solid var(--border);border-radius:12px;padding:14px} .metric-name{font-size:13px;color:var(--muted)} .metric-score{font-size:30px;font-weight:800;margin:8px 0} .bar{height:8px;background:#1e293b;border-radius:999px;overflow:hidden} .fill{height:100%}
+.timeline{display:flex;align-items:flex-end;gap:4px;height:150px;padding-top:10px} .cycle-wrap{flex:1;display:flex;align-items:flex-end} .cycle-bar{width:100%;border-radius:6px 6px 0 0}
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .block{background:#0c1522;border:1px solid var(--border);border-radius:12px;padding:12px} .block .val{font-size:26px;font-weight:700}
+ul{margin:0;padding-left:18px} li{margin:10px 0;line-height:1.45} .gain{color:var(--green);font-weight:700;margin-left:8px} pre{white-space:pre-wrap;color:#cfe6ff;background:#0c1522;border:1px solid var(--border);border-radius:10px;padding:12px}
+</style>
 </head>
-<body style='margin:0;padding:24px;background:#0a0c0f;color:#cbd5e1;font-family:Arial,sans-serif'>
-  <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px;margin-bottom:16px'>
-    <h1 style='margin:0;color:#f59e0b'>OEP Mining Dashboard</h1>
-    <div style='font-size:12px;color:#94a3b8;margin-top:6px'>Fecha 2026-04-18 · shovel_left.mp4 · imu_data.npy</div>
-    <div style='margin-top:10px;font-size:12px;color:#94a3b8'>Duración <strong>900s</strong> · Ciclos <strong>17</strong> · Cargas/hora <strong>68.0</strong></div>
+<body>
+<div class='container'>
+  <div class='card header'>
+    <div>
+      <h1 style='margin:0;color:var(--amber)'>Operator Efficiency Profile</h1>
+      <div class='muted'>Proyecto empresarial de evaluación de operador para Hitachi EX-5600</div>
+      <div class='muted' style='margin-top:6px'>Flota observada: CAT 793F, EH4000 AC-3</div>
+    </div>
+    <div class='muted' style='text-align:right'>Fecha 2026-04-18<br>shovel_left.mp4 · shovel_right.mp4<br>imu_data.npy</div>
   </div>
-  <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px'>
-    <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px'>
-      <div style='font-size:12px;color:#94a3b8'>OEP SCORE</div>
-      <div style='font-size:56px;font-weight:700;color:#f59e0b'>66.0</div>
-      <div>DEVELOPING — Operador en desarrollo, entrenamiento recomendado</div>
+
+  <div class='hero'>
+    <div class='card'>
+      <div class='muted'>OEP Score Global</div>
+      <div class='score'>70.2</div>
+      <div>DEVELOPING — Operación usable, pero con pérdidas corregibles</div>
+      <div class='subscore' style='margin-top:8px'>Percentil estimado: 25</div>
     </div>
-    <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px'>
-      <div style='font-size:12px;color:#94a3b8'>IMPACTO ANUAL</div>
-      <div style='font-size:34px;font-weight:700;color:#f59e0b'>+$11,161,248</div>
-      <div style='font-size:12px;color:#94a3b8'>Mejorado 15 min: $3,439</div>
+    <div class='card'>
+      <div class='kpis'>
+        <div class='kpi'><div class='name'>Ciclos/hora</div><div class='val'>68.0</div></div>
+        <div class='kpi'><div class='name'>Camiones/hora</div><div class='val'>15.11</div></div>
+        <div class='kpi'><div class='name'>Min/camión</div><div class='val'>3.37</div></div>
+        <div class='kpi'><div class='name'>CV ciclo</div><div class='val'>0.232</div></div>
+      </div>
     </div>
-    <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px'>
-      <div style='font-size:12px;color:#94a3b8'>RESUMEN</div>
-      <pre style='white-space:pre-wrap;color:#dbeafe;font-size:12px'>{
-  "overall": {
-    "oep_score": 66.0,
-    "profile_type": "DEVELOPING — Operador en desarrollo, entrenamiento recomendado",
-    "percentile_estimate": 25
-  },
-  "speed": {
-    "score": 100.0,
-    "loads_per_hour": 68.0,
-    "avg_cycle_seconds": 44.91,
-    "std_cycle_seconds": 10.42,
-    "cycle_times": [
-      30.87,
-      38.93,
-      50.2,
-      57.13,
-      32.73,
-      37.73,
-      66.4,
-      40.0,
-      58.73,
-      52.07,
-      34.47,
-      41.2,
-      51.87,
-      35.93,
-      42.8,
-      57.33,
-      35.07
-    ]
-  },
-  "technique": {
-    "score": 82.0,
-    "avg_jerk": 41.17,
-    "max_jerk": 769.96,
-    "smoothness_index": 9.37,
-    "symmetry_index": 0.476
-  }
-}</pre>
+    <div class='card'>
+      <div class='muted'>Impacto económico</div>
+      <div class='score' style='font-size:42px;color:var(--amber)'>+$35,360,000</div>
+      <div class='subscore'>Valor horario actual: $37,778</div>
+      <div class='subscore'>Valor horario mejorado: $42,689</div>
     </div>
   </div>
-  <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px;margin-top:16px'>
-    <h3 style='margin-top:0'>Dimensiones</h3>
-    <div><div style='font-size:12px;color:#94a3b8'>SPEED <strong style='color:#22c55e'>100</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:100.0%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>QUALITY <strong style='color:#ef4444'>0</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:0.0%;background:#ef4444'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>TECHNIQUE <strong style='color:#22c55e'>82</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:82.0%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>ADAPTABILITY <strong style='color:#22c55e'>97</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:97.2%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>FATIGUE <strong style='color:#22c55e'>100</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:100.0%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>SAFETY <strong style='color:#ef4444'>0</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:0.0%;background:#ef4444'></div></div></div>
+
+  <div class='card'>
+    <h3 style='margin-top:0'>Dimensiones del operador</h3>
+    <div class='metrics-grid'><div class='metric-card'><div class='metric-name'>Cycle Efficiency</div><div class='metric-score' style='color:#22c55e'>100</div><div class='bar'><div class='fill' style='width:100.0%;background:#22c55e'></div></div></div><div class='metric-card'><div class='metric-name'>Rhythm Consistency</div><div class='metric-score' style='color:#ef4444'>27</div><div class='bar'><div class='fill' style='width:27.4%;background:#ef4444'></div></div></div><div class='metric-card'><div class='metric-name'>Motion Control</div><div class='metric-score' style='color:#22c55e'>79</div><div class='bar'><div class='fill' style='width:78.7%;background:#22c55e'></div></div></div><div class='metric-card'><div class='metric-name'>Side Balance</div><div class='metric-score' style='color:#22c55e'>88</div><div class='bar'><div class='fill' style='width:87.7%;background:#22c55e'></div></div></div><div class='metric-card'><div class='metric-name'>Endurance</div><div class='metric-score' style='color:#22c55e'>100</div><div class='bar'><div class='fill' style='width:100.0%;background:#22c55e'></div></div></div><div class='metric-card'><div class='metric-name'>Operational Risk</div><div class='metric-score' style='color:#ef4444'>15</div><div class='bar'><div class='fill' style='width:15.4%;background:#ef4444'></div></div></div></div>
   </div>
+
+  <div style='display:grid;grid-template-columns:1.2fr .8fr;gap:18px'>
+    <div class='card'>
+      <h3 style='margin-top:0'>Timeline de ciclos</h3>
+      <div class='timeline'><div class='cycle-wrap'><div class='cycle-bar' style='height:48.51px;background:#22c55e' title='30.87s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:61.175714285714285px;background:#22c55e' title='38.93s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:78.88571428571429px;background:#f59e0b' title='50.2s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:89.77571428571429px;background:#f59e0b' title='57.13s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:51.43285714285714px;background:#22c55e' title='32.73s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:59.28999999999999px;background:#22c55e' title='37.73s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:104.34285714285714px;background:#ef4444' title='66.4s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:62.857142857142854px;background:#22c55e' title='40.0s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:92.28999999999999px;background:#ef4444' title='58.73s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:81.82428571428572px;background:#f59e0b' title='52.07s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:54.167142857142856px;background:#22c55e' title='34.47s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:64.74285714285715px;background:#22c55e' title='41.2s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:81.51px;background:#f59e0b' title='51.87s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:56.46142857142856px;background:#22c55e' title='35.93s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:67.25714285714285px;background:#22c55e' title='42.8s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:90.08999999999999px;background:#f59e0b' title='57.33s'></div></div><div class='cycle-wrap'><div class='cycle-bar' style='height:55.11px;background:#22c55e' title='35.07s'></div></div></div>
+      <div class='muted' style='margin-top:8px'>Target operativo de referencia: 50s por pase</div>
+    </div>
+    <div class='card'>
+      <h3 style='margin-top:0'>Deriva y resistencia operacional</h3>
+      <div class='blocks'>
+        <div class='block'><div class='muted'>Bloque 1</div><div class='val'>9.38</div></div><div class='block'><div class='muted'>Bloque 2</div><div class='val'>9.32</div></div><div class='block'><div class='muted'>Bloque 3</div><div class='val'>9.40</div></div>
+      </div>
+      <div class='muted' style='margin-top:12px'>Proyección 8h: 10.34 · Gap entre lados: 0.25s</div>
+    </div>
+  </div>
+
+  <div style='display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px'>
+    <div class='card'>
+      <h3 style='margin-top:0'>Recomendaciones empresariales</h3>
+      <ul><li><strong>[HIGH]</strong> Reducir la variabilidad de ciclo. Estandarizar la secuencia excavación-swing-descarga-retorno para eliminar ciclos lentos aislados. <span class='gain'>+7%</span></li><li><strong>[HIGH]</strong> Atacar eventos extremos de operación. Los picos de jerk y ciclos atípicos son señales de riesgo y de pérdida de control operativo. <span class='gain'>+5%</span></li><li><strong>[LOW]</strong> Revisar OEP periódicamente para comparar operadores, turnos y mejoras aplicadas. <span class='gain'>+1%</span></li></ul>
+    </div>
+    <div class='card'>
+      <h3 style='margin-top:0'>Método resumido</h3>
+      <pre>1. Detectar ciclos desde gyro_roll.
+2. Medir duración, variabilidad y outliers.
+3. Evaluar control con smoothness y jerk.
+4. Comparar equilibrio izquierda/derecha.
+5. Medir deriva temporal por bloques.
+6. Traducir métricas a riesgo, coaching e impacto económico.</pre>
+    </div>
+  </div>
+  
+</div>
 </body>
 </html>

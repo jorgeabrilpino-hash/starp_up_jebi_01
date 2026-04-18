@@ -4,14 +4,20 @@
     "total_cycles": 17,
     "video_left": "shovel_left.mp4",
     "video_right": "shovel_right.mp4",
-    "imu_file": "imu_data.npy"
+    "imu_file": "imu_data.npy",
+    "equipment_model": "Hitachi EX-5600",
+    "truck_models": [
+      "CAT 793F",
+      "EH4000 AC-3"
+    ]
   },
   "dimensions": {
-    "speed": {
+    "cycle_efficiency": {
       "score": 100.0,
-      "loads_per_hour": 68.0,
       "avg_cycle_seconds": 44.91,
-      "std_cycle_seconds": 10.42,
+      "cycles_per_hour": 68.0,
+      "estimated_trucks_per_hour": 15.11,
+      "estimated_service_minutes": 3.37,
       "cycle_times": [
         30.87,
         38.93,
@@ -32,28 +38,28 @@
         35.07
       ]
     },
-    "quality": {
-      "score": 0.0,
-      "dark_mineral_pct": 26.78,
-      "spillage_pct": 92.2
+    "rhythm_consistency": {
+      "score": 27.4,
+      "std_cycle_seconds": 10.42,
+      "cycle_cv": 0.232,
+      "outlier_cycle_ratio": 0.412
     },
-    "technique": {
-      "score": 82.0,
-      "avg_jerk": 41.17,
-      "max_jerk": 769.96,
+    "motion_control": {
+      "score": 78.7,
       "smoothness_index": 9.37,
-      "symmetry_index": 0.476
+      "avg_jerk": 41.17,
+      "p95_jerk": 119.79,
+      "max_jerk": 769.96
     },
-    "adaptability": {
-      "score": 97.2,
-      "left_avg_cycle_s": 44.79,
-      "right_avg_cycle_s": 45.04,
-      "position_penalty_pct": 0.55
+    "side_balance": {
+      "score": 87.7,
+      "left_avg_cycle_seconds": 44.79,
+      "right_avg_cycle_seconds": 45.04,
+      "side_gap_seconds": 0.25,
+      "side_gap_pct": 0.55
     },
-    "fatigue": {
+    "endurance": {
       "score": 100.0,
-      "smoothness_block1": 9.38,
-      "smoothness_block2": 9.32,
       "smoothness_blocks": [
         9.38,
         9.32,
@@ -63,38 +69,103 @@
       "decay_per_minute": 0.002,
       "projected_8h_smoothness": 10.34
     },
-    "safety": {
-      "score": 0.0,
-      "risk_events_count": 10,
-      "load_stability_index": 0.524
+    "operational_risk": {
+      "score": 15.4,
+      "extreme_jerk_events": 10,
+      "spill_proxy_pct": 92.2,
+      "symmetry_index": 0.476,
+      "outlier_cycle_ratio": 0.412
     }
   },
+  "metrics": {
+    "avg_cycle_seconds": 44.91,
+    "std_cycle_seconds": 10.42,
+    "cycle_cv": 0.232,
+    "cycle_times": [
+      30.87,
+      38.93,
+      50.2,
+      57.13,
+      32.73,
+      37.73,
+      66.4,
+      40.0,
+      58.73,
+      52.07,
+      34.47,
+      41.2,
+      51.87,
+      35.93,
+      42.8,
+      57.33,
+      35.07
+    ],
+    "cycles_per_hour": 68.0,
+    "estimated_trucks_per_hour": 15.11,
+    "estimated_service_minutes": 3.37,
+    "outlier_cycle_ratio": 0.412,
+    "left_avg_cycle_seconds": 44.79,
+    "right_avg_cycle_seconds": 45.04,
+    "side_gap_seconds": 0.25,
+    "side_gap_pct": 0.55,
+    "smoothness_blocks": [
+      9.38,
+      9.32,
+      9.4
+    ],
+    "smoothness_index": 9.37,
+    "avg_jerk": 41.17,
+    "p95_jerk": 119.79,
+    "max_jerk": 769.96,
+    "extreme_jerk_events": 10,
+    "decay_per_block": 0.01,
+    "decay_per_minute": 0.002,
+    "projected_8h_smoothness": 10.34,
+    "endurance_delta": 0.02,
+    "visual_load_darkness": 26.78,
+    "spill_proxy_pct": 92.2,
+    "symmetry_index": 0.476,
+    "equipment_model": "Hitachi EX-5600",
+    "truck_models": [
+      "CAT 793F",
+      "EH4000 AC-3"
+    ],
+    "target_passes_per_truck": 4.5
+  },
   "overall": {
-    "oep_score": 66.0,
-    "profile_type": "DEVELOPING — Operador en desarrollo, entrenamiento recomendado",
-    "percentile_estimate": 25
+    "oep_score": 70.2,
+    "profile_type": "DEVELOPING — Operación usable, pero con pérdidas corregibles",
+    "percentile_estimate": 25,
+    "weights": {
+      "cycle_efficiency": 0.24,
+      "rhythm_consistency": 0.18,
+      "motion_control": 0.2,
+      "side_balance": 0.12,
+      "endurance": 0.13,
+      "operational_risk": 0.13
+    }
   },
   "recommendations": [
     {
       "priority": "HIGH",
-      "action": "Revisar el punto de descarga y el acceso al material para elevar la proporción de mineral oscuro útil.",
-      "expected_gain_pct": 12
+      "action": "Reducir la variabilidad de ciclo. Estandarizar la secuencia excavación-swing-descarga-retorno para eliminar ciclos lentos aislados.",
+      "expected_gain_pct": 7
+    },
+    {
+      "priority": "HIGH",
+      "action": "Atacar eventos extremos de operación. Los picos de jerk y ciclos atípicos son señales de riesgo y de pérdida de control operativo.",
+      "expected_gain_pct": 5
     },
     {
       "priority": "LOW",
-      "action": "Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.",
-      "expected_gain_pct": 1
-    },
-    {
-      "priority": "LOW",
-      "action": "Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.",
+      "action": "Revisar OEP periódicamente para comparar operadores, turnos y mejoras aplicadas.",
       "expected_gain_pct": 1
     }
   ],
   "economic_impact": {
-    "current_value_per_15min_usd": 2276.3,
-    "improved_value_per_15min_usd": 3438.93,
-    "annual_improvement_usd": 11161248.0
+    "current_hourly_value_usd": 37777.78,
+    "improved_hourly_value_usd": 42688.89,
+    "annual_improvement_usd": 35360000.0
   },
   "ai_advisor": {
     "enabled": false,
