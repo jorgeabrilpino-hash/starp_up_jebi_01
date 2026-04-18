@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JEBI OEP Monitor</title>
+  <style>
+    :root{--bg:#0b0f14;--card:#121922;--border:#223042;--text:#d6e2f0;--muted:#8ea2b8;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--blue:#38bdf8}
+    body{margin:0;padding:24px;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+    .wrap{max-width:1100px;margin:0 auto}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:16px}
+    h1,h2{margin:0 0 12px}
+    .muted{color:var(--muted)}
+    .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted);margin:4px 6px 0 0}
+    .ok{color:var(--green);font-weight:700}
+    .btns{display:flex;flex-wrap:wrap;gap:12px}
+    a.btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;background:#17212b;border:1px solid var(--border);color:var(--text)}
+    a.btn.primary{border-color:#7c5a10;background:#2b1f0a;color:#ffd27a}
+    pre{white-space:pre-wrap;word-break:break-word;background:#0d141c;border:1px solid var(--border);padding:14px;border-radius:8px;color:#cde3ff;max-height:420px;overflow:auto}
+    .kv{font-size:14px}
+    .value{font-size:28px;font-weight:700;margin-top:6px}
+    @media (max-width: 800px){.row{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>JEBI OEP Monitor</h1>
+    <div class="muted">Vista simple de monitoreo local del proyecto</div>
+    <div class="pill">Estado: <span class="ok">COMPLETADO</span></div>
+    <div class="pill">Pipeline: run.sh</div>
+    <div class="pill">Inputs: detectados</div>
+    <div class="pill">Dashboard: disponible</div>
+  </div>
+
+  <div class="row">
+    <div class="card kv"><div class="muted">OEP Score</div><div class="value">66.0</div></div>
+    <div class="card kv"><div class="muted">Ciclos</div><div class="value">17</div></div>
+    <div class="card kv"><div class="muted">Ciclo promedio</div><div class="value">44.9s</div></div>
+    <div class="card kv"><div class="muted">Smoothness</div><div class="value">9.37/10</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Accesos directos</h2>
+    <div class="btns">
+      <a class="btn primary" href="./dashboard/index.html">Abrir dashboard</a>
+      <a class="btn" href="./oep_report.json">Ver oep_report.json</a>
+      <a class="btn" href="./oep_summary.txt">Ver oep_summary.txt</a>
+      <a class="btn" href="./oep_visualization.png">Ver oep_visualization.png</a>
+      <a class="btn" href="./live_run.log">Ver live_run.log</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Último log</h2>
+    <pre>=== JEBI Hackaton 2026 — OEP Mining Productivity MVP v2 ===
+[1/1] Ejecutando pipeline OEP...
+============================================================
+OEP SCORE FINAL: 66.0 / 100
+PERFIL: DEVELOPING — Operador en desarrollo, entrenamiento recomendado
+CICLOS DETECTADOS: 17
+CICLO PROMEDIO: 44.9s
+MINERAL OSCURO: 26.8%
+SMOOTHNESS: 9.37/10
+IMPACTO ANUAL: +$11,161,248 USD
+============================================================
+=== COMPLETADO ===
+Outputs disponibles en ./outputs
+Dashboard: outputs/dashboard/index.html</pre>
+  </div>
+</div>
+</body>
+</html>
