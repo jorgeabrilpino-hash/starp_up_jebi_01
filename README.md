@@ -15,6 +15,21 @@ solution/
     reporting.py
     advisor.py
     pipeline.py
+scripts/
+  setup_inputs_local.sh
+  download_inputs.py
+```
+
+## Preparar inputs
+
+### Opción rápida, si ya tienes los archivos en este entorno
+```bash
+bash scripts/setup_inputs_local.sh
+```
+
+### Opción reproducible, si necesitas bajarlos
+```bash
+python scripts/download_inputs.py
 ```
 
 ## Ejecución
