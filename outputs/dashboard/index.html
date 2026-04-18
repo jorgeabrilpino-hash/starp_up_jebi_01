@@ -4,75 +4,70 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>OEP Dashboard</title>
-<style>
-:root{--bg:#0a0c0f;--surface:#111418;--border:#1e2530;--amber:#f59e0b;--text:#cbd5e1;--muted:#64748b;--green:#22c55e;--red:#ef4444;}
-*{box-sizing:border-box}
-body{margin:0;padding:24px;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;}
-.header{display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px;margin-bottom:24px;}
-.grid-main,.grid-bottom{display:grid;gap:16px;}
-.grid-main{grid-template-columns:280px 1fr 320px;margin-bottom:16px;}
-.grid-bottom{grid-template-columns:1fr 1fr 1fr;}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;}
-.title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;}
-.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
-.pill{padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px;}
-.gauge{width:180px;height:180px;border-radius:50%;display:grid;place-items:center;margin:0 auto;border:12px solid #1e2530;position:relative;}
-.gauge::after{content:'';position:absolute;inset:-12px;border-radius:50%;border:12px solid #f59e0b;clip-path:inset(0 0 34.0% 0);}
-.gauge-inner{position:relative;text-align:center;z-index:1;}
-.score{font-size:42px;font-weight:700;color:#f59e0b;}
-.sub{font-size:12px;color:var(--muted);}
-.dim-item{margin-bottom:10px;}
-.dim-head{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
-.track{height:6px;background:#1e2530;border-radius:999px;overflow:hidden;}
-.fill{height:100%;}
-.cycles{display:flex;align-items:flex-end;gap:3px;height:100px;}
-.bar{flex:1;border-radius:3px 3px 0 0;min-height:4px;}
-.fatigue-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.block-label{width:56px;font-size:12px;color:var(--muted);}
-.bar-track{flex:1;height:8px;background:#1e2530;border-radius:999px;overflow:hidden;}
-.bar-fill{height:100%;}
-.block-val{font-size:12px;width:32px;text-align:right;}
-.badge{padding:3px 6px;border-radius:4px;font-size:11px;font-weight:700;}
-table{width:100%;border-collapse:collapse;}
-th,td{padding:8px;text-align:left;border-bottom:1px solid #151922;font-size:13px;vertical-align:top;}
-th{font-size:11px;color:var(--muted);text-transform:uppercase;}
-.gain{color:var(--green);font-weight:700;}
-.small{font-size:12px;color:var(--muted);}
-pre{white-space:pre-wrap;word-break:break-word;font-size:12px;color:#dbeafe;}
-</style>
 </head>
-<body>
-<div class='header'>
-  <div><h1 style='margin:0;color:var(--amber)'>OEP Mining Dashboard</h1><div class='small'>JEBI Hackaton 2026 · Hitachi EX-5600</div></div>
-  <div class='small' style='text-align:right'>2026-04-18<br>shovel_left.mp4 / shovel_right.mp4<br>imu_data.npy</div>
-</div>
-<div class='meta'>
-  <div class='pill'>Duración <strong>900s</strong></div>
-  <div class='pill'>Ciclos <strong>17</strong></div>
-  <div class='pill'>Ciclo promedio <strong>44.9s</strong></div>
-  <div class='pill'>Cargas/hora <strong>68.0</strong></div>
-</div>
-<div class='grid-main'>
-  <div class='card'><div class='title'>OEP Score</div><div class='gauge'><div class='gauge-inner'><div class='score'>66.0</div><div class='sub'>/100 · P25</div></div></div><div style='text-align:center;margin-top:14px'>DEVELOPING — Operador en desarrollo, entrenamiento recomendado</div></div>
-  <div class='card'><div class='title'>Resumen de datos</div><pre id='radar'></pre></div>
-  <div class='card'><div class='title'>Dimensiones</div><div id='dims'></div></div>
-</div>
-<div class='grid-bottom'>
-  <div class='card'><div class='title'>Timeline de ciclos</div><div class='cycles' id='cycles'></div></div>
-  <div class='card'><div class='title'>Fatiga / deriva</div><div class='fatigue-row'><span class='block-label'>Bloque 1</span><div class='bar-track'><div class='bar-fill' style='width:93.80000000000001%;background:#22c55e'></div></div><span class='block-val' style='color:#22c55e'>9.4</span></div><div class='fatigue-row'><span class='block-label'>Bloque 2</span><div class='bar-track'><div class='bar-fill' style='width:93.2%;background:#22c55e'></div></div><span class='block-val' style='color:#22c55e'>9.3</span></div><div class='fatigue-row'><span class='block-label'>Bloque 3</span><div class='bar-track'><div class='bar-fill' style='width:94.0%;background:#22c55e'></div></div><span class='block-val' style='color:#22c55e'>9.4</span></div><div class='small' style='margin-top:12px'>Proyección 8h: <strong>10.34/10</strong></div></div>
-  <div class='card'><div class='title'>Impacto económico</div><div style='font-size:28px;color:var(--amber);font-weight:700'>+$11,161,248</div><div class='small'>mejora anual estimada</div><div style='margin-top:14px' class='small'>Actual 15 min: $2,276<br>Mejorado 15 min: $3,439</div></div>
-</div>
-<div class='card' style='margin-top:16px'><div class='title'>Top recomendaciones</div><table><thead><tr><th>Prioridad</th><th>Acción</th><th>Ganancia</th></tr></thead><tbody><tr><td><span class='badge' style='background:#ef444420;color:#ef4444;border:1px solid #ef444440'>HIGH</span></td><td>Revisar el punto de descarga y el acceso al material para elevar la proporción de mineral oscuro útil.</td><td class='gain'>+12%</td></tr><tr><td><span class='badge' style='background:#22c55e20;color:#22c55e;border:1px solid #22c55e40'>LOW</span></td><td>Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.</td><td class='gain'>+1%</td></tr><tr><td><span class='badge' style='background:#22c55e20;color:#22c55e;border:1px solid #22c55e40'>LOW</span></td><td>Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.</td><td class='gain'>+1%</td></tr></tbody></table></div>
-<script>
-const OEP = {"metadata": {"date": "2026-04-18", "duration_seconds": 899.87, "total_cycles": 17, "video_left": "shovel_left.mp4", "video_right": "shovel_right.mp4", "imu_file": "imu_data.npy"}, "dimensions": {"speed": {"score": 100.0, "loads_per_hour": 68.0, "avg_cycle_seconds": 44.91, "std_cycle_seconds": 10.42, "cycle_times": [30.87, 38.93, 50.2, 57.13, 32.73, 37.73, 66.4, 40.0, 58.73, 52.07, 34.47, 41.2, 51.87, 35.93, 42.8, 57.33, 35.07]}, "quality": {"score": 0.0, "dark_mineral_pct": 26.78, "spillage_pct": 92.2}, "technique": {"score": 82.0, "avg_jerk": 41.17, "max_jerk": 769.96, "smoothness_index": 9.37, "symmetry_index": 0.476}, "adaptability": {"score": 97.2, "left_avg_cycle_s": 44.79, "right_avg_cycle_s": 45.04, "position_penalty_pct": 0.55}, "fatigue": {"score": 100.0, "smoothness_block1": 9.38, "smoothness_block2": 9.32, "smoothness_blocks": [9.38, 9.32, 9.4], "decay_per_block": 0.01, "decay_per_minute": 0.002, "projected_8h_smoothness": 10.34}, "safety": {"score": 0.0, "risk_events_count": 10, "load_stability_index": 0.524}}, "overall": {"oep_score": 66.0, "profile_type": "DEVELOPING — Operador en desarrollo, entrenamiento recomendado", "percentile_estimate": 25}, "recommendations": [{"priority": "HIGH", "action": "Revisar el punto de descarga y el acceso al material para elevar la proporción de mineral oscuro útil.", "expected_gain_pct": 12}, {"priority": "LOW", "action": "Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.", "expected_gain_pct": 1}, {"priority": "LOW", "action": "Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador.", "expected_gain_pct": 1}], "economic_impact": {"current_value_per_15min_usd": 2276.3, "improved_value_per_15min_usd": 3438.93, "annual_improvement_usd": 11161248.0}};
-const dims = OEP.dimensions;
-const dimKeys = ['speed','quality','technique','adaptability','fatigue','safety'];
-const dimLabels = ['Speed','Quality','Technique','Adaptability','Fatigue','Safety'];
-const dimsDiv = document.getElementById('dims');
-dimKeys.forEach((k,i)=>{const s=dims[k].score; const c=s>=75?'#22c55e':s>=60?'#f59e0b':'#ef4444'; dimsDiv.innerHTML += `<div class='dim-item'><div class='dim-head'><span>${dimLabels[i]}</span><strong style='color:${c}'>${s.toFixed(0)}</strong></div><div class='track'><div class='fill' style='width:${s}%;background:${c}'></div></div></div>`;});
-const cycles = dims.speed.cycle_times || [];
-const cyclesDiv = document.getElementById('cycles');
-(cycles.length?cycles:[dims.speed.avg_cycle_seconds]).forEach((t)=>{const c=t<50?'#22c55e':t<55?'#f59e0b':'#ef4444'; const h=Math.max(8, Math.min(100, t/70*100)); const el=document.createElement('div'); el.className='bar'; el.style.height=h+'px'; el.style.background=c; el.title=t.toFixed(1)+'s'; cyclesDiv.appendChild(el);});
-document.getElementById('radar').textContent = JSON.stringify({overall:OEP.overall, dimensions:Object.fromEntries(dimKeys.map(k=>[k,dims[k].score]))}, null, 2);
-</script>
-</body></html>
+<body style='margin:0;padding:24px;background:#0a0c0f;color:#cbd5e1;font-family:Arial,sans-serif'>
+  <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px;margin-bottom:16px'>
+    <h1 style='margin:0;color:#f59e0b'>OEP Mining Dashboard</h1>
+    <div style='font-size:12px;color:#94a3b8;margin-top:6px'>Fecha 2026-04-18 · shovel_left.mp4 · imu_data.npy</div>
+    <div style='margin-top:10px;font-size:12px;color:#94a3b8'>Duración <strong>900s</strong> · Ciclos <strong>17</strong> · Cargas/hora <strong>68.0</strong></div>
+  </div>
+  <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px'>
+    <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px'>
+      <div style='font-size:12px;color:#94a3b8'>OEP SCORE</div>
+      <div style='font-size:56px;font-weight:700;color:#f59e0b'>66.0</div>
+      <div>DEVELOPING — Operador en desarrollo, entrenamiento recomendado</div>
+    </div>
+    <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px'>
+      <div style='font-size:12px;color:#94a3b8'>IMPACTO ANUAL</div>
+      <div style='font-size:34px;font-weight:700;color:#f59e0b'>+$11,161,248</div>
+      <div style='font-size:12px;color:#94a3b8'>Mejorado 15 min: $3,439</div>
+    </div>
+    <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px'>
+      <div style='font-size:12px;color:#94a3b8'>RESUMEN</div>
+      <pre style='white-space:pre-wrap;color:#dbeafe;font-size:12px'>{
+  "overall": {
+    "oep_score": 66.0,
+    "profile_type": "DEVELOPING — Operador en desarrollo, entrenamiento recomendado",
+    "percentile_estimate": 25
+  },
+  "speed": {
+    "score": 100.0,
+    "loads_per_hour": 68.0,
+    "avg_cycle_seconds": 44.91,
+    "std_cycle_seconds": 10.42,
+    "cycle_times": [
+      30.87,
+      38.93,
+      50.2,
+      57.13,
+      32.73,
+      37.73,
+      66.4,
+      40.0,
+      58.73,
+      52.07,
+      34.47,
+      41.2,
+      51.87,
+      35.93,
+      42.8,
+      57.33,
+      35.07
+    ]
+  },
+  "technique": {
+    "score": 82.0,
+    "avg_jerk": 41.17,
+    "max_jerk": 769.96,
+    "smoothness_index": 9.37,
+    "symmetry_index": 0.476
+  }
+}</pre>
+    </div>
+  </div>
+  <div style='background:#111418;border:1px solid #1e2530;border-radius:8px;padding:18px;margin-top:16px'>
+    <h3 style='margin-top:0'>Dimensiones</h3>
+    <div><div style='font-size:12px;color:#94a3b8'>SPEED <strong style='color:#22c55e'>100</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:100.0%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>QUALITY <strong style='color:#ef4444'>0</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:0.0%;background:#ef4444'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>TECHNIQUE <strong style='color:#22c55e'>82</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:82.0%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>ADAPTABILITY <strong style='color:#22c55e'>97</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:97.2%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>FATIGUE <strong style='color:#22c55e'>100</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:100.0%;background:#22c55e'></div></div></div><div><div style='font-size:12px;color:#94a3b8'>SAFETY <strong style='color:#ef4444'>0</strong></div><div style='height:8px;background:#1e2530;border-radius:999px;overflow:hidden;margin:6px 0 12px'><div style='height:100%;width:0.0%;background:#ef4444'></div></div></div>
+  </div>
+</body>
+</html>

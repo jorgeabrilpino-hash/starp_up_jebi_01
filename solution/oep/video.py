@@ -3,27 +3,22 @@ from __future__ import annotations
 import cv2
 import numpy as np
 
-
 DEFAULT_DARK_PCT = 60.0
 DEFAULT_SPILL_PCT = 3.0
 
 
 def _open_video(video_path: str):
     cap = cv2.VideoCapture(video_path)
-    if not cap.isOpened():
-        return None
-    return cap
+    return cap if cap.isOpened() else None
 
 
 def analyze_mineral_quality(video_path: str, sample_every_n: int = 30) -> float:
     cap = _open_video(video_path)
     if cap is None:
         return DEFAULT_DARK_PCT
-
     dark_count = 0
     total_count = 0
     frame_idx = 0
-
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -35,23 +30,18 @@ def analyze_mineral_quality(video_path: str, sample_every_n: int = 30) -> float:
             dark_count += int(np.sum(dark_mask > 0))
             total_count += int(roi.shape[0] * roi.shape[1])
         frame_idx += 1
-
     cap.release()
-    if total_count == 0:
-        return DEFAULT_DARK_PCT
-    return round(dark_count / total_count * 100, 2)
+    return round(dark_count / total_count * 100, 2) if total_count else DEFAULT_DARK_PCT
 
 
 def detect_spillage(video_path: str, sample_every_n: int = 30) -> float:
     cap = _open_video(video_path)
     if cap is None:
         return DEFAULT_SPILL_PCT
-
     prev_frame = None
     spill_events = 0
     sampled_frames = 0
     frame_idx = 0
-
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -69,8 +59,5 @@ def detect_spillage(video_path: str, sample_every_n: int = 30) -> float:
                     spill_events += 1
             prev_frame = frame.copy()
         frame_idx += 1
-
     cap.release()
-    if sampled_frames == 0:
-        return DEFAULT_SPILL_PCT
-    return round(min(spill_events / sampled_frames * 100, 100), 2)
+    return round(min(spill_events / sampled_frames * 100, 100), 2) if sampled_frames else DEFAULT_SPILL_PCT

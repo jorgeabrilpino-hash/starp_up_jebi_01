@@ -1,32 +1,25 @@
 ======================================================================
 OPERATOR EFFICIENCY PROFILE (OEP) — REPORTE EJECUTIVO
-JEBI Mining Productivity 2.0 | Hackaton 2026
 Fecha de análisis: 2026-04-18
 ======================================================================
 
 1. RESUMEN EJECUTIVO
-El operador obtuvo un OEP Score de 66.0/100, clasificado como DEVELOPING — Operador en desarrollo, entrenamiento recomendado. Se ubica en el percentil 25. Durante 900 segundos de sesión se completaron 17 ciclos con un tiempo promedio de 44.9s por ciclo (68.0 cargas/hora).
+El operador obtuvo un OEP Score de 66.0/100, perfil DEVELOPING — Operador en desarrollo, entrenamiento recomendado, percentil 25. Durante 900s se completaron 17 ciclos con promedio 44.9s y 68.0 cargas/hora.
 
-2. FORTALEZAS DEL OPERADOR
-Las dimensiones con mejor desempeño son: Speed (100/100), Technique (82/100), Adaptability (97/100), Fatigue (100/100).
+2. FORTALEZAS
+Speed (100/100), Technique (82/100), Adaptability (97/100), Fatigue (100/100)
 
-3. AREAS CRITICAS DE MEJORA
-Las dimensiones que requieren atención prioritaria son: Quality (0/100), Safety (0/100).
+3. AREAS CRITICAS
+Quality (0/100), Safety (0/100)
 
-4. TOP 3 RECOMENDACIONES ACCIONABLES
+4. TOP 3 RECOMENDACIONES
   1. [HIGH] Revisar el punto de descarga y el acceso al material para elevar la proporción de mineral oscuro útil. (ganancia estimada: +12%)
   2. [LOW] Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador. (ganancia estimada: +1%)
   3. [LOW] Revisar periódicamente el OEP para consolidar mejoras y seguir la tendencia del operador. (ganancia estimada: +1%)
 
 5. TECNICA Y FATIGA
-El índice de suavidad actual es 9.37/10. La suavidad se mantiene relativamente estable durante la sesión.
+Smoothness actual: 9.37/10. Proyección 8h: 10.34/10.
 
-6. PROYECCION DE MEJORA
-Si se aplican las 3 principales recomendaciones, el OEP podría subir a 75.2/100 (Bueno), con un impacto anual estimado de +$11,161,248 USD.
-
-======================================================================
-OEP Score:           66.0/100
-Perfil:              DEVELOPING — Operador en desarrollo, entrenamiento recomendado
-Percentil estimado:  25%
-Impacto anual:       +$11,161,248 USD
+6. IMPACTO ECONOMICO
+Mejora anual estimada: +$11,161,248 USD
 ======================================================================

@@ -1,6 +1,5 @@
 {
   "metadata": {
-    "date": "2026-04-18",
     "duration_seconds": 899.87,
     "total_cycles": 17,
     "video_left": "shovel_left.mp4",
@@ -96,5 +95,10 @@
     "current_value_per_15min_usd": 2276.3,
     "improved_value_per_15min_usd": 3438.93,
     "annual_improvement_usd": 11161248.0
+  },
+  "ai_advisor": {
+    "enabled": false,
+    "provider": null,
+    "advice": null
   }
 }
