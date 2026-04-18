@@ -1,5 +1,5 @@
 ==============================================================================
-OPERATOR EFFICIENCY PROFILE (OEP) — REPORTE EJECUTIVO EMPRESARIAL
+REPORTE OPERACIONAL DE PRODUCTIVIDAD DEL OPERADOR
 Fecha de análisis: 2026-04-18
 ==============================================================================
 
@@ -7,22 +7,28 @@ Fecha de análisis: 2026-04-18
 Equipo analizado: Hitachi EX-5600
 Flota asociada: CAT 793F, EH4000 AC-3
 Ventana evaluada: 900s
-Ciclos detectados: 17
 
 2. QUE SE MIDIO Y COMO
-Se detectaron ciclos desde gyro_roll del IMU, luego se calcularon métricas de duración, variabilidad, control del movimiento, balance entre lados, deriva temporal y eventos extremos. El modelo del equipo base es Hitachi EX-5600 y la referencia operativa se interpreta contra camiones CAT 793F / EH4000 AC-3 con una proxy de 4.5 pases por camión.
+Se detectaron ciclos desde gyro_roll del IMU. Sobre esa segmentación se calcularon KPIs estándar de tiempo de ciclo, variabilidad, diferencia entre lados, smoothness, jerk y estabilidad temporal. Luego se construyó un índice interno de resumen solo para visualización gerencial, no como métrica estándar de industria.
 
-3. RESUMEN EJECUTIVO
-El operador obtuvo un OEP Score de 70.2/100, perfil DEVELOPING — Operación usable, pero con pérdidas corregibles, percentil 25.
-Se estiman 68.0 ciclos por hora y 15.11 camiones servidos por hora, con 3.37 min por camión.
+3. STANDARD KPIs
+- cycle_time_avg_s: 44.91
+- cycle_time_std_s: 10.42
+- cycle_time_cv: 0.232
+- cycles_per_hour: 68.0
+- estimated_trucks_per_hour: 15.11
+- service_time_per_truck_min: 3.37
+- left_cycle_time_avg_s: 44.79
+- right_cycle_time_avg_s: 45.04
+- side_delta_s: 0.25
+- jerk_avg: 41.17
+- jerk_p95: 119.79
+- jerk_max: 769.96
+- smoothness_index: 9.37
+- extreme_jerk_event_count: 10
+- smoothness_decay_per_block: 0.01
 
-4. FORTALEZAS
-Cycle Efficiency (100/100), Motion Control (79/100), Side Balance (88/100), Endurance (100/100)
-
-5. AREAS CRITICAS
-Rhythm Consistency (27/100), Operational Risk (15/100)
-
-6. HALLAZGOS CLAVE
+4. HALLAZGOS CLAVE
 - Promedio de ciclo: 44.91s
 - Variabilidad del ciclo (CV): 0.232
 - Gap entre lados: 0.25s
@@ -30,13 +36,19 @@ Rhythm Consistency (27/100), Operational Risk (15/100)
 - Eventos extremos: 10
 - Proyección de smoothness a 8h: 10.34
 
-7. TOP 3 RECOMENDACIONES
-  1. [HIGH] Reducir la variabilidad de ciclo. Estandarizar la secuencia excavación-swing-descarga-retorno para eliminar ciclos lentos aislados. (ganancia estimada: +7%)
-  2. [HIGH] Atacar eventos extremos de operación. Los picos de jerk y ciclos atípicos son señales de riesgo y de pérdida de control operativo. (ganancia estimada: +5%)
-  3. [LOW] Revisar OEP periódicamente para comparar operadores, turnos y mejoras aplicadas. (ganancia estimada: +1%)
+5. INDICE INTERNO DE RESUMEN
+Score: 81.4/100
+Clasificación: PROFICIENT — Buen desempeño con pérdidas menores
+Percentil estimado: 50
+Nota: Internal summary index built from standard operational KPIs and IMU signal indicators. Not an industry standard metric.
 
-8. IMPACTO ECONOMICO
+6. TOP 3 RECOMENDACIONES
+  1. [HIGH] Reducir la variabilidad del tiempo de ciclo. Estandarizar la secuencia excavación-swing-descarga-retorno para eliminar pases lentos aislados. (ganancia estimada: +7%)
+  2. [HIGH] Bajar brusquedad operacional. Disminuir jerk y correcciones finales mejora control, precisión y vida útil del equipo. (ganancia estimada: +6%)
+  3. [LOW] Revisar periódicamente estos KPIs para comparar operadores, turnos y mejoras aplicadas. (ganancia estimada: +1%)
+
+7. IMPACTO ECONOMICO
 Valor horario actual: $37,778
-Valor horario mejorado: $42,689
-Mejora anual estimada: +$35,360,000
+Valor horario mejorado: $43,067
+Mejora anual estimada: +$38,080,000
 ==============================================================================
